@@ -1,0 +1,51 @@
+<div class="formulario-recargas">
+    <h2>Formulario de Recargas</h2>
+    <form>
+        <div class="form-group">
+            <label for="codigo_recarga">Codigo:</label>
+            <input type="number" id="codigo_recarga" name="codigo_recarga" [(ngModel)]="recargaRecibo.codigo_recargarecibo">
+        </div>  
+      <div class="form-group">
+        <label for="numero_recarga">Numero a recargar:</label>
+        <input type="text" id="numero_recarga" name="numero_recarga" [(ngModel)]="recargaRecibo.numero_recargarecibo">
+      </div>
+      <div class="form-group">
+        <label for="operdor">Operador:</label>
+        <select [(ngModel)]="codigoOperador" name="operador" class="form-control" required>
+            <option *ngFor="let operador of operadores | async" [ngValue]="operador.codigo_operador">{{ operador.nombre_operador }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="monto">Monto a recargar:</label>
+        <input type="number" id="monto" name="monto" [(ngModel)]="recargaRecibo.monto_recargarecibo">
+      </div>
+      
+    </form>
+    <button (click)="realizarRecarga()" class="btn btn-primary">Realizar Recarga</button>
+</div>
+
+
+
+
+<div class="contenedor-recargas">
+    <div class="titulo-recargas">
+      <h2>Recargas realizadas</h2>
+    </div>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Codigo</th>
+          <th>Numero celular</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rec of recargas | async">
+          <td>{{ rec.codigo_recarga }}</td>
+          <td>{{ rec.numero_recarga }}</td>
+          <td>{{ rec.monto_recarga }}</td>
+        </tr>
+      </tbody>
+    </table>
+</div>
